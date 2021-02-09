@@ -1,3 +1,5 @@
+const isEqually = (guess, item) => guess === item;
+
 function binary_search(list, item) {
     let low = 0;
     let high = list.length - 1;
@@ -6,18 +8,14 @@ function binary_search(list, item) {
         mid = Math.floor((low + high) / 2);
         guess = list[mid];
 
-        if (guess === item) {
+        if (isEqually(guess, item)) {
             return mid;
         }
 
-        if (guess > item) {
-            high = mid - 1;
-        } else {
-            low = mid + 1;
-        }
+        guess > item ? (high = --mid) : (low = ++mid);
     }
 
-    return null;
+    return -1;
 }
 
 const array = [-3, -1, 1, 3, 5, 7, 9, 10];
